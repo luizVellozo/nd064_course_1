@@ -3,12 +3,29 @@ import sqlite3
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
 
+class DBFactory():
+    __db_connection_count = 0
+    _instance = None
+    def __new__(class_, *args, **kwargs):
+        if not isinstance(class_._instance, class_):
+            class_._instance = super().__new__(class_, *args, **kwargs)
+        return class_._instance
+    
+    # Function to get a database connection.
+    # This function connects to database with the name `database.db`
+    def get_db_connection(self):
+        connection = sqlite3.connect('database.db')
+        connection.row_factory = sqlite3.Row
+        self.__db_connection_count += 1
+        return connection
+    
+    def get_db_count(self):
+        return self.__db_connection_count
+
 # Function to get a database connection.
 # This function connects to database with the name `database.db`
 def get_db_connection():
-    connection = sqlite3.connect('database.db')
-    connection.row_factory = sqlite3.Row
-    return connection
+    return DBFactory().get_db_connection()
 
 # Function to get a post using its ID
 def get_post(post_id):
@@ -17,6 +34,12 @@ def get_post(post_id):
                         (post_id,)).fetchone()
     connection.close()
     return post
+
+def get_post_count():
+    connection = get_db_connection()
+    post_count = connection.execute('SELECT SUM(1) AS COUNT_POSTS FROM posts').fetchone()
+    connection.close()
+    return post_count
 
 # Define the Flask application
 app = Flask(__name__)
@@ -73,13 +96,18 @@ def healthz():
 
 @app.route("/metrics")
 def metrics():
-    data = {
-        "status": "success",
-        "code": 0,
-        "UserCount": 141,
-        "UserCountActive": 23
+    
+    # Question: New connection will be opened with each /metrics call, is this a problem?
+    post_count_row = get_post_count()
+    
+    # Question: is it just show active connection?
+    db_count = DBFactory().get_db_count()
+
+    metrics_result = {
+        "db_connection_count": db_count,
+        "post_count": post_count_row['COUNT_POSTS'],
     }
-    return jsonify(data);
+    return jsonify(metrics_result)
 
 # start the application on port 3111
 if __name__ == "__main__":
