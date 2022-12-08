@@ -65,6 +65,22 @@ def create():
 
     return render_template('create.html')
 
+# healthcheack endpoint
+@app.route("/healthz")
+def healthz():
+    result = { "result": " OK - healthy"}
+    return jsonify(result);
+
+@app.route("/metrics")
+def metrics():
+    data = {
+        "status": "success",
+        "code": 0,
+        "UserCount": 141,
+        "UserCountActive": 23
+    }
+    return jsonify(data);
+
 # start the application on port 3111
 if __name__ == "__main__":
    app.run(host='0.0.0.0', port='3111')
