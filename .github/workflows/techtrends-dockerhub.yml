@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./Dockerfile
+          file: ./project/Dockerfile
           platforms: linux/amd64
           push: true
           tags: luizvellozo/techtrends:latest
