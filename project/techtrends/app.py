@@ -2,6 +2,7 @@ import sqlite3
 
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
+from logging.config import dictConfig
 
 class DBFactory():
     __db_connection_count = 0
@@ -61,6 +62,7 @@ def post(post_id):
     if post is None:
       return render_template('404.html'), 404
     else:
+      app.logger.info('Article "'+post['title']+'" - retrived!')
       return render_template('post.html', post=post)
 
 # Define the About Us page
@@ -108,6 +110,28 @@ def metrics():
         "post_count": post_count_row['COUNT_POSTS'],
     }
     return jsonify(metrics_result)
+
+from logging.config import dictConfig
+
+dictConfig(
+    {
+        "version": 1,
+        "formatters": {
+            "default": {
+                "format": "%(levelname)s:%(module)s:[%(asctime)s], %(message)s",
+                "datefmt": "%Y-%m-%d, %H:%M:%S",
+            }
+        },
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+                "stream": "ext://sys.stdout",
+                "formatter": "default",
+            }
+        },
+        "root": {"level": "DEBUG", "handlers": ["console"]},
+    }
+)
 
 # start the application on port 3111
 if __name__ == "__main__":
