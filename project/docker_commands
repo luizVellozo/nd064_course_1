@@ -5,39 +5,39 @@ docker build -t techtrends:1.0.0 .
 docker run -d -p 7111:3111 --name techtrends techtrends:1.0.0
 
 ## Docker commands used to get the application logs
+docker logs 526b0c2570db
 docker logs -f techtrends
 
 ## Logs from the container running the TechTrends application
 ## use docker logs -f techtrends
-* Serving Flask app 'app' (lazy loading)
- * Environment: production
-   WARNING: This is a development server. Do not use it in a production deployment.
-   Use a production WSGI server instead.
- * Debug mode: off
-WARNING:_internal:[2022-12-08, 17:18:07],  * Running on all addresses.
-   WARNING: This is a development server. Do not use it in a production deployment.
-INFO:_internal:[2022-12-08, 17:18:07],  * Running on http://172.18.0.2:3111/ (Press CTRL+C to quit)
-INFO:_internal:[2022-12-08, 17:18:19], 172.18.0.1 - - [08/Dec/2022 17:18:19] "GET /metrics HTTP/1.1" 200 -
-INFO:_internal:[2022-12-08, 17:18:21], 172.18.0.1 - - [08/Dec/2022 17:18:21] "GET /metrics HTTP/1.1" 200 -
  * Serving Flask app 'app' (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
    Use a production WSGI server instead.
  * Debug mode: off
-WARNING:_internal:[2022-12-08, 17:21:14],  * Running on all addresses.
+WARNING:_internal:[2022-12-08, 17:26:58],  * Running on all addresses.
    WARNING: This is a development server. Do not use it in a production deployment.
-INFO:_internal:[2022-12-08, 17:21:14],  * Running on http://172.18.0.2:3111/ (Press CTRL+C to quit)
-INFO:_internal:[2022-12-08, 17:22:36], 172.18.0.1 - - [08/Dec/2022 17:22:36] "GET /metrics HTTP/1.1" 200 -
-INFO:_internal:[2022-12-08, 17:22:38], 172.18.0.1 - - [08/Dec/2022 17:22:38] "GET /metrics HTTP/1.1" 200 -
-INFO:app:[2022-12-08, 17:22:44], Article "2020 CNCF Annual Report" - retrived!
-INFO:_internal:[2022-12-08, 17:22:44], 172.18.0.1 - - [08/Dec/2022 17:22:44] "GET /1 HTTP/1.1" 200 -
-INFO:_internal:[2022-12-08, 17:22:44], 172.18.0.1 - - [08/Dec/2022 17:22:44] "GET /static/css/main.css HTTP/1.1" 304 -
-INFO:app:[2022-12-08, 17:22:47], Article "KubeCon + CloudNativeCon 2021" - retrived!
-INFO:_internal:[2022-12-08, 17:22:47], 172.18.0.1 - - [08/Dec/2022 17:22:47] "GET /2 HTTP/1.1" 200 -
-INFO:_internal:[2022-12-08, 17:22:47], 172.18.0.1 - - [08/Dec/2022 17:22:47] "GET /static/css/main.css HTTP/1.1" 304 -
-INFO:app:[2022-12-08, 17:22:53], Article "Kubernetes v1.20 Release Notes" - retrived!
-INFO:_internal:[2022-12-08, 17:22:53], 172.18.0.1 - - [08/Dec/2022 17:22:53] "GET /3 HTTP/1.1" 200 -
-INFO:_internal:[2022-12-08, 17:22:53], 172.18.0.1 - - [08/Dec/2022 17:22:53] "GET /static/css/main.css HTTP/1.1" 304 -
-INFO:_internal:[2022-12-08, 17:23:13], 172.18.0.1 - - [08/Dec/2022 17:23:13] "GET /healthz HTTP/1.1" 200 -
-INFO:_internal:[2022-12-08, 17:23:16], 172.18.0.1 - - [08/Dec/2022 17:23:16] "GET /healthz HTTP/1.1" 200 -
-INFO:_internal:[2022-12-08, 17:23:20], 172.18.0.1 - - [08/Dec/2022 17:23:20] "GET /metrics HTTP/1.1" 200 -
+INFO:_internal:[2022-12-08, 17:26:58],  * Running on http://172.18.0.2:3111/ (Press CTRL+C to quit)
+INFO:_internal:[2022-12-08, 17:27:20], 172.18.0.1 - - [08/Dec/2022 17:27:20] "GET /metrics HTTP/1.1" 200 -
+INFO:_internal:[2022-12-08, 17:27:20], 172.18.0.1 - - [08/Dec/2022 17:27:20] "GET /favicon.ico HTTP/1.1" 404 -
+INFO:_internal:[2022-12-08, 17:27:24], 172.18.0.1 - - [08/Dec/2022 17:27:24] "GET /metrics HTTP/1.1" 200 -
+INFO:app:[2022-12-08, 17:27:29], Article "2020 CNCF Annual Report" - retrived!
+INFO:_internal:[2022-12-08, 17:27:29], 172.18.0.1 - - [08/Dec/2022 17:27:29] "GET /1 HTTP/1.1" 200 -
+INFO:_internal:[2022-12-08, 17:27:29], 172.18.0.1 - - [08/Dec/2022 17:27:29] "GET /static/css/main.css HTTP/1.1" 200 -
+INFO:app:[2022-12-08, 17:28:09], Article "KubeCon + CloudNativeCon 2021" - retrived!
+INFO:_internal:[2022-12-08, 17:28:09], 172.18.0.1 - - [08/Dec/2022 17:28:09] "GET /2 HTTP/1.1" 200 -
+INFO:_internal:[2022-12-08, 17:28:09], 172.18.0.1 - - [08/Dec/2022 17:28:09] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:_internal:[2022-12-08, 17:28:15], 172.18.0.1 - - [08/Dec/2022 17:28:15] "GET /metrics HTTP/1.1" 200 -
+INFO:app:[2022-12-08, 17:28:21], Article "2020 CNCF Annual Report" - retrived!
+INFO:_internal:[2022-12-08, 17:28:21], 172.18.0.1 - - [08/Dec/2022 17:28:21] "GET /1 HTTP/1.1" 200 -
+INFO:_internal:[2022-12-08, 17:28:21], 172.18.0.1 - - [08/Dec/2022 17:28:21] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:_internal:[2022-12-08, 17:31:58], 172.18.0.1 - - [08/Dec/2022 17:31:58] "GET / HTTP/1.1" 200 -
+INFO:_internal:[2022-12-08, 17:31:58], 172.18.0.1 - - [08/Dec/2022 17:31:58] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:_internal:[2022-12-08, 22:16:38], 172.18.0.1 - - [08/Dec/2022 22:16:38] "GET /create HTTP/1.1" 200 -
+INFO:_internal:[2022-12-08, 22:16:38], 172.18.0.1 - - [08/Dec/2022 22:16:38] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:_internal:[2022-12-08, 22:17:01], 172.18.0.1 - - [08/Dec/2022 22:17:01] "POST /create HTTP/1.1" 302 -
+INFO:_internal:[2022-12-08, 22:17:01], 172.18.0.1 - - [08/Dec/2022 22:17:01] "GET / HTTP/1.1" 200 -
+INFO:_internal:[2022-12-08, 22:17:01], 172.18.0.1 - - [08/Dec/2022 22:17:01] "GET /static/css/main.css HTTP/1.1" 304 -
+INFO:app:[2022-12-08, 22:17:18], Article "Test for Udacity" - retrived!
+INFO:_internal:[2022-12-08, 22:17:18], 172.18.0.1 - - [08/Dec/2022 22:17:18] "GET /7 HTTP/1.1" 200 -
+INFO:_internal:[2022-12-08, 22:17:18], 172.18.0.1 - - [08/Dec/2022 22:17:18] "GET /static/css/main.css HTTP/1.1" 304 -
