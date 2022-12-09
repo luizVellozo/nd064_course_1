@@ -19,7 +19,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: luizvellozo/techtrends
+          images: |
+            luizvellozo/techtrends
+          tags: |
+            type=ref,event=branch,suffix=${{github.run_number}}
+            type=ref,event=pr,suffix=${{github.run_number}}
+            type=semver,pattern={{version}},suffix=${{github.run_number}}
+            type=semver,pattern={{major}}.{{minor}},suffix=${{github.run_number}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
