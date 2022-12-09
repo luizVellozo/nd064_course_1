@@ -22,10 +22,10 @@ jobs:
           images: |
             luizvellozo/techtrends
           tags: |
-            type=ref,event=branch,suffix=${{github.run_number}}
-            type=ref,event=pr,suffix=${{github.run_number}}
-            type=semver,pattern={{version}},suffix=${{github.run_number}}
-            type=semver,pattern={{major}}.{{minor}},suffix=${{github.run_number}}
+            type=ref,event=branch,suffix=-${{github.run_number}}
+            type=ref,event=pr,suffix=-${{github.run_number}}
+            type=semver,pattern={{version}},suffix=-${{github.run_number}}
+            type=semver,pattern={{major}}.{{minor}},suffix=-${{github.run_number}}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -34,6 +34,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       -
         name: Login to DockerHub
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -45,6 +46,6 @@ jobs:
           context: ./project
           file: ./project/Dockerfile
           platforms: linux/amd64
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
