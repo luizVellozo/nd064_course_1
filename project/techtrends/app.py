@@ -23,7 +23,7 @@ class DBFactory():
     def check_connection(self):
         connection = self.get_db_connection()
         if connection is None:
-            return false
+            return False
         post_table = connection.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='posts'").fetchone()
         return post_table is not None and post_table['name'] == 'posts'
     
@@ -134,8 +134,7 @@ dictConfig(
         "version": 1,
         "formatters": {
             "default": {
-                "format": "%(levelname)s:%(module)s:[%(asctime)s], %(message)s",
-                "datefmt": "%Y-%m-%d, %H:%M:%S",
+                "format": "%(asctime)s [%(levelname)s] %(message)s",
             }
         },
         "handlers": {
@@ -151,4 +150,4 @@ dictConfig(
 
 # start the application on port 3111
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port='3111')
+   app.run(host='0.0.0.0', port='3111', debug=True)
