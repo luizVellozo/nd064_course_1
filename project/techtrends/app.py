@@ -19,6 +19,13 @@ class DBFactory():
         connection.row_factory = sqlite3.Row
         self.__db_connection_count += 1
         return connection
+
+    def check_connection(self):
+        connection = self.get_db_connection()
+        if connection is None:
+            return false
+        post_table = connection.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='posts'").fetchone()
+        return post_table is not None and post_table['name'] == 'posts'
     
     def get_db_count(self):
         return self.__db_connection_count
@@ -93,8 +100,17 @@ def create():
 # healthcheack endpoint
 @app.route("/healthz")
 def healthz():
-    result = { "result": " OK - healthy"}
-    return jsonify(result);
+    try:
+        if DBFactory().check_connection():
+            result = { "result": " OK - healthy"}
+            return jsonify(result)
+        else:
+            result = { "result": "ERRO - unhealthy"}
+            return jsonify(result), 500
+    except Exception as e:
+        app.logger.error('database healthy check fail: '+str(e))
+        result = { "result": "ERRO - unhealthy"}
+        return jsonify(result), 500
 
 @app.route("/metrics")
 def metrics():
