@@ -1,8 +1,9 @@
 import sqlite3
+import logging
+import sys
 
 from flask import Flask, jsonify, json, render_template, request, url_for, redirect, flash
 from werkzeug.exceptions import abort
-from logging.config import dictConfig
 
 class DBFactory():
     __db_connection_count = 0
@@ -25,6 +26,7 @@ class DBFactory():
         if connection is None:
             return False
         post_table = connection.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='posts'").fetchone()
+        connection.close()
         return post_table is not None and post_table['name'] == 'posts'
     
     def get_db_count(self):
@@ -127,27 +129,14 @@ def metrics():
     }
     return jsonify(metrics_result)
 
-from logging.config import dictConfig
 
-dictConfig(
-    {
-        "version": 1,
-        "formatters": {
-            "default": {
-                "format": "%(asctime)s [%(levelname)s] %(message)s",
-            }
-        },
-        "handlers": {
-            "console": {
-                "class": "logging.StreamHandler",
-                "stream": "ext://sys.stdout",
-                "formatter": "default",
-            }
-        },
-        "root": {"level": "DEBUG", "handlers": ["console"]},
-    }
-)
 
 # start the application on port 3111
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port='3111', debug=True)
+
+    # config logs, set logger to handle STDOUT and STDERR 
+    handlers = [logging.StreamHandler()]
+    format_output = "%(asctime)s [%(levelname)s] %(message)s"
+    logging.basicConfig(format=format_output, level=logging.DEBUG, handlers=handlers)
+
+    app.run(host='0.0.0.0', port='3111', debug=True)
