@@ -135,6 +135,8 @@ def metrics():
 if __name__ == "__main__":
 
     # config logs, set logger to handle STDOUT and STDERR 
+    #stdout_handler = logging.StreamHandler(sys.stdout)
+    #stderr_handler =  logging.StreamHandler(sys.stderr)
     handlers = [logging.StreamHandler()]
     format_output = "%(asctime)s [%(levelname)s] %(message)s"
     logging.basicConfig(format=format_output, level=logging.DEBUG, handlers=handlers)
