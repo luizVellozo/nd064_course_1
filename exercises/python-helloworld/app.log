@@ -1,0 +1,13 @@
+[2022-11-17 19:50:11,135] WARNING in _internal:  * Debugger is active!
+[2022-11-17 19:50:11,135] INFO in _internal:  * Debugger PIN: 142-936-845
+[2022-11-17 19:50:58,983] INFO in app: Success for hello world
+[2022-11-17 19:50:58,984] INFO in _internal: 127.0.0.1 - - [17/Nov/2022 19:50:58] "GET / HTTP/1.1" 200 -
+[2022-11-17 19:51:00,113] INFO in app: Success for hello world
+[2022-11-17 19:51:00,114] INFO in _internal: 127.0.0.1 - - [17/Nov/2022 19:51:00] "GET / HTTP/1.1" 200 -
+[2022-11-17 19:51:01,178] INFO in app: Success for hello world
+[2022-11-17 19:51:01,178] INFO in _internal: 127.0.0.1 - - [17/Nov/2022 19:51:01] "GET / HTTP/1.1" 200 -
+[2022-11-17 19:51:01,646] INFO in app: Success for hello world
+[2022-11-17 19:51:01,646] INFO in _internal: 127.0.0.1 - - [17/Nov/2022 19:51:01] "GET / HTTP/1.1" 200 -
+[2022-11-17 19:51:02,647] INFO in app: Success for hello world
+[2022-11-17 19:51:02,647] INFO in _internal: 127.0.0.1 - - [17/Nov/2022 19:51:02] "GET / HTTP/1.1" 200 -
+[2022-11-17 22:15:33,619] INFO in _internal:  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
